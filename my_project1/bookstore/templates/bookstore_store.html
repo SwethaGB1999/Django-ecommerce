@@ -1,0 +1,72 @@
+{% extends 'bookstore_main.html' %}
+{% load static %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <div class="product-container">
+        {% for i in product %}
+            <div class="product-card">
+                <a href="#">
+                    <img src="/static/images/{{i.image}}" alt="Product 1">
+                </a>
+                <div id="nm{{i.id}}" class="product-details"><h4>{{i.product_name}}</h4>
+                </div>
+                <div  class="product-details">
+                    <h5>{{i.author_name}}</h5>
+                    <p class="product-price">{{i.price}}</p>
+                </div>
+                <button  id="{{i.id}}" class="atc add-to-cart-button">Add to Cart</button>
+               
+                
+            </div>
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+        console.log('This is working!');
+
+        if(localStorage.getItem('cart')==null){
+            var cart={};
+        }
+        else{
+            cart=JSON.parse(localStorage.getItem('cart'));
+        }
+
+        $(document).on('click','.atc',function(){
+            console.log("the add to cart button is clicked!")
+            var item_id= this.id.toString();
+            console.log(item_id);
+
+            if(cart[item_id]!=undefined){
+                quantity=cart[item_id][0]+1;
+                cart[item_id][0]=quantity;
+                
+            }
+            else{
+                quantity=1;
+                name=document.getElementById('nm'+item_id).innerHTML;
+                cart[item_id]=[quantity,name];
+            }
+            console.log(cart);
+            localStorage.setItem('cart',JSON.stringify(cart));
+
+            document.getElementById('cart').innerHTML=Object.keys(cart).length
+            
+
+        });
+
+        
+        $(function(){
+            $('[data-toggle="popover"]').popover()
+        })
+        $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+    });
+        
+        document.getElementById('cart').setAttribute('data-content','<h2>This is your cart</h2>');
+        
+
+    </script>
+    
+
+{% endblock content %}
+

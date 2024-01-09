@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            width: calc(33.33% - 20px); /* One-third of the container width with some margin */
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card a {
+            display: block;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .product-details {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .add-to-cart-button {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <a href="#">
+                <img src="https://via.placeholder.com/150" alt="Product 1">
+            </a>
+            <div class="product-details">
+                <h3>Product 1</h3>
+                <h4>Author</h4>
+                <p class="product-price">$19.99</p>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
+        </div>
+
+       
+
+        <!-- Repeat the structure for more products -->
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<body>
+    {% for i in product %}
+     <div class="product-container">
+         <div class="product-card">
+             <a href="#">
+                 <img src="https://via.placeholder.com/150" alt="Product 1">
+             </a>
+             <div class="product-details">
+                 <h3>{{i.product_name}}</h3>
+                 <h4>by-{{i.author_name}}</h4>
+                 <p class="product-price">${{i.price}}</p>
+                 <button class="add-to-cart-button">Add to Cart</button>
+             </div>
+         </div>
+     {% endfor %}
+         
+     </div>
+ </body>
+ 
+ </html>

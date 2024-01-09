@@ -1,0 +1,35 @@
+{% extends 'bookstore_main.html'%}
+{% block content %}
+
+  <ul id="item_list" class="list-group">
+    
+  </ul>
+
+  <a href="/bookstore/checkout/"><button style="margin-top:30px; " type="button" class="btn btn-primary btn-lg">CHECKOUT</button></a>
+
+  
+  <script type="text/javascript" >
+    if(localStorage.getItem('cart')==null){
+      var cart={};
+    }
+    else{
+      cart=JSON.parse(localStorage.getItem('cart'));
+    }
+    for(item in cart){
+      let name=cart[item][1];
+      let quantity=cart[item][0];
+
+      // itemString=`<li class=list-group-item>${name}-${quantity}</li>`
+      
+
+      itemString=`<li class="list-group-item d-flex justify-content-between align-items-center"> ${name}
+      <span class="span badge badge-primary badge-pill">${quantity}</span>
+    </li>`
+    $('#item_list').append(itemString);
+    }
+
+  </script>
+
+
+{% endblock content %}
+
